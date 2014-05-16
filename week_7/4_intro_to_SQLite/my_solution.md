@@ -21,7 +21,7 @@
 
 ## Release 5: Reflect
 <!-- Add your reflection here -->
-This was my favorite SQL challenge because we were actually manipulating the database not just querying it. This was a much harder challenge for me.
+This was my favorite SQL challenge because we were actu 2014ally manipulating the database not just querying it. This was a much harder challenge for me.
 I really enjoyed doing it all from the terminal. In the past I have used SQL Server Management Studio from Microsoft which is slow and unweildy..alhtough handy for a 
 db as large as our business system's. The terminal is much quicker, easier to access, and flexible. One place I got caught was if you already have info and try and add a 
 NOT NULL Column you have to specify default values or change the column to NOT NULL after you have created it and entered the values!
