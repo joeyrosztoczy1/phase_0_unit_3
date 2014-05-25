@@ -56,7 +56,7 @@ class Student
   def initialize(first_name, scores)   #Use named arguments! 
   	@first_name = first_name 
    	@scores = scores
-   	@average = @scores.inject(:+) / @scores.length
+   	@average = @scores.inject(:+) / @scores.length.to_f
    	@letter_grade = 
 
    	case @average
