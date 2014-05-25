@@ -10,15 +10,37 @@ Do not alter the students and scores code.
 I worked on this challenge [by myself, with:]
 
 */
+var gradebook = {};
 
-var students = ["Joseph", "Susan", "William", "Elizabeth"]
+var students = ["Joseph", "Susan", "William", "Elizabeth"];
 
 var scores = [ [80, 70, 70, 100],
                [85, 80, 90, 90],
                [75, 70, 80, 75],
-               [100, 90, 95, 85] ]
+               [100, 90, 95, 85] ];
 
+var sum = 0;
+function average_grade(num_array) = {
+  for (i = 0, i < num_array.length; i++) {
+      sum += parseInt(num_array[i], 10);
+  }
+  var average = sum/num_array.length;
+  return average;
+}
 
+var gradebook = { students: [
+  Joseph = { testScores: [80, 70, 70, 100] },
+  Susan = { testScores: [85, 80, 90, 90] },
+  William = { testScores: [75, 70, 80, 75] },
+  Elizabeth = { testScores: [100, 90, 95, 85] },
+  ]
+}
+
+function addScore(student, score) = {
+  for (var student in gradebook) {
+
+  }
+}
 
 
 
