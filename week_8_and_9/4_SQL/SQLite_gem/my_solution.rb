@@ -14,13 +14,16 @@ def print_arizona_reps
   az_reps.each { |rep| puts rep }
 end
 
-def print_longest_serving_reps(minimum_years)  #sorry guys, oracle needs me, i didn't finish this!
+def print_longest_serving_reps(minimum_years) 
   puts "LONGEST SERVING REPRESENTATIVES"
-  puts $db.execute("SELECT name FROM congress_members WHERE years_in_congress > #{minimum_years}")
+  longest_reps = $db.execute("SELECT name, years_in_congress FROM congress_members WHERE years_in_congress > #{minimum_years}")  
+  puts longest_reps
 end
 
-def print_lowest_grade_level_speakers
+def print_lowest_grade_level_speakers(lowest_grade)
   puts "LOWEST GRADE LEVEL SPEAKERS (less than < 8th grade)"
+  lowest_speakers = $db.execute("SELECT name FROM congress_members WHERE grade_current < #{lowest_grade}")
+  puts lowest_speakers
 end
 
 def print_separator
@@ -35,24 +38,38 @@ print_arizona_reps
 print_separator
 
 print_longest_serving_reps(35)
-# TODO - Print out the number of years served as well as the name of the longest running reps
-# output should look like:  Rep. C. W. Bill Young - 41 years
 
 print_separator
-print_lowest_grade_level_speakers 
-# TODO - Need to be able to pass the grade level as an argument, look in schema for "grade_current" column
+print_lowest_grade_level_speakers(8) 
 
-# TODO - Make a method to print the following states representatives as well:
-# (New Jersey, New York, Maine, Florida, and Alaska)
+def print_NJ_NY_Maine_Florida_Alaska
+  puts "STATE REPS FROM CUSTOM STATES!"
+  nJ_NY_Maine_Florida_Alaska = $db.execute("SELECT name FROM congress_members WHERE location IN('NJ', 'NY', 'ME', 'FL', 'AK')")
+  puts nJ_NY_Maine_Florida_Alaska
+end
+
+print_separator
+
+print_NJ_NY_Maine_Florida_Alaska
 
 
 ##### BONUS #######
 # TODO (bonus) - Stop SQL injection attacks!  Statmaster learned that interpolation of variables in SQL statements leaves some security vulnerabilities.  Use the google to figure out how to protect from this type of attack.
+# using session states requires for someone to be logged in which helps protect against this attack, and then using character escapes is the next recommended step.
+
 
 # TODO (bonus)
 # Create a listing of all of the Politicians and the number of votes they recieved
 # output should look like:  Sen. John McCain - 7,323 votes (This is an example, yours will not return this value, it should just 
 #    have a similar format)
+def print_reps_and_votes
+  puts "Politicians and their VOTES!"
+  names_votes = $db.execute("SELECT name, COUNT(voter_id) FROM congress_members JOIN votes ON congress_members.id = votes.politician_id")
+  puts names_votes
+end
+
+print_separator
+print_reps_and_votes
 # Create a listing of each Politician and the voter that voted for them
 # output should include the senators name, then a long list of voters separated by a comma
 #
@@ -67,3 +84,8 @@ print_lowest_grade_level_speakers
 #   > #{minimum_years}")`.  Try to explain this as clearly as possible for 
 # your fellow students.  
 # If you're having trouble, find someone to pair on this explanation with you.
+# The SQLite3 gem allows ruby to interface with the database engine. It is akin to using libraries or other code references in other languages.
+# The variable $db holds a single encapsulated connection to whatever database the URI is holding (file passed as an argument)
+# The execute is part of the Database class in ruby that runs a SQL query on the db. That is selecting names from the database for people who have at least
+# a certain number of years of service!
+
