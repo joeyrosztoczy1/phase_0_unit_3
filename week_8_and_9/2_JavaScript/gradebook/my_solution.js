@@ -10,7 +10,23 @@ Do not alter the students and scores code.
 I worked on this challenge [by myself, with:]
 
 */
-var gradebook = {};
+
+function Gradebook(students, scores) {
+  for (i = 0; i < students.length; i++) {
+    this[students[i]] = scores[i];
+  }
+  this.addScore = function(student, score) {
+    this[student] = score;
+  };
+  this.getAverage = function(num_array) {
+    var sum = 0;
+    for (i = 0; i < num_array.length; i++) {
+      sum += parseInt(num_array[i], 10);
+    };
+    function average() { sum/num_array.length };
+    return average();
+  };
+}
 
 var students = ["Joseph", "Susan", "William", "Elizabeth"];
 
@@ -19,28 +35,11 @@ var scores = [ [80, 70, 70, 100],
                [75, 70, 80, 75],
                [100, 90, 95, 85] ];
 
-var sum = 0;
-function average_grade(num_array) = {
-  for (i = 0, i < num_array.length; i++) {
-      sum += parseInt(num_array[i], 10);
-  }
-  var average = sum/num_array.length;
-  return average;
-}
 
-var gradebook = { students: [
-  Joseph = { testScores: [80, 70, 70, 100] },
-  Susan = { testScores: [85, 80, 90, 90] },
-  William = { testScores: [75, 70, 80, 75] },
-  Elizabeth = { testScores: [100, 90, 95, 85] },
-  ]
-}
 
-function addScore(student, score) = {
-  for (var student in gradebook) {
+var gradebook = new Gradebook(students,scores);
 
-  }
-}
+
 
 
 
