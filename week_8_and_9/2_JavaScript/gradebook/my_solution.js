@@ -11,33 +11,33 @@ I worked on this challenge [by myself, with:]
 
 */
 
-function Gradebook(students, scores) {
-  for (i = 0; i < students.length; i++) {
-    this[students[i]] = scores[i];
-  }
-  this.addScore = function(student, score) {
-    this[student] = score;
-  };
-  this.getAverage = function(num_array) {
-    var sum = 0;
-    for (i = 0; i < num_array.length; i++) {
-      sum += parseInt(num_array[i], 10);
-    };
-    function average() { sum/num_array.length };
-    return average();
-  };
-}
+// function Gradebook(students, scores) {
+//   for (i = 0; i < students.length; i++) {
+//     this[students[i]] = scores[i];
+//   }
+//   this.addScore = function(student, score) {
+//     this[student] = score;
+//   };
+//   this.getAverage = function(num_array) {
+//     var sum = 0;
+//     for (i = 0; i < num_array.length; i++) {
+//       sum += parseInt(num_array[i], 10);
+//     };
+//     function average() { sum/num_array.length };
+//     return average();
+//   };
+// }
 
-var students = ["Joseph", "Susan", "William", "Elizabeth"];
+// var students = ["Joseph", "Susan", "William", "Elizabeth"];
 
-var scores = [ [80, 70, 70, 100],
-               [85, 80, 90, 90],
-               [75, 70, 80, 75],
-               [100, 90, 95, 85] ];
+// var scores = [ [80, 70, 70, 100],
+//                [85, 80, 90, 90],
+//                [75, 70, 80, 75],
+//                [100, 90, 95, 85] ];
 
 
 
-var gradebook = new Gradebook(students,scores);
+// var gradebook = new Gradebook(students,scores);
 
 
 
@@ -55,8 +55,34 @@ var gradebook = new Gradebook(students,scores);
 // __________________________________________
 // Refactored Solution
 
+var average = function(scoreArray){
+  var sum = 0;
+  for (i = 0; i < scoreArray.length; i++ ) {
+    sum += scoreArray[i];
+  }
+  return sum / scoreArray.length
+};
 
+ var students = ["Joseph", "Susan", "William", "Elizabeth"];
 
+ var scores = [ [80, 70, 70, 100],
+                [85, 80, 90, 90],                
+                [75, 70, 80, 75],
+                [100, 90, 95, 85] ];
+var gradebook = {
+  "Joseph": {"testScores": scores[0], },
+  "Susan": {"testScores": scores[1], },
+  "William": {"testScores": scores[2], },
+  "Elizabeth": {"testScores": scores[3], },
+  addScore: function(name, score) {
+    gradebook[name]["testScores"].push(score);
+  },
+  getAverage: function(name) {
+    return average(gradebook[name]["testScores"]);
+  }
+}
+
+console.log(gradebook.getAverage("Joseph"))
 
 
 
@@ -139,6 +165,6 @@ assert(
 
 assert(
   (gradebook.getAverage("Joseph") === 80),
-  "gradebook's getAverage should return 80 if passed 'Jospeh'.",
+  "gradebook's getAverage should return 80 if passed 'Joseph'.",
   "9. "
 )
