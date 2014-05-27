@@ -74,15 +74,18 @@ var gradebook = {
   "Susan": {"testScores": scores[1], },
   "William": {"testScores": scores[2], },
   "Elizabeth": {"testScores": scores[3], },
+
+
   addScore: function(name, score) {
     gradebook[name]["testScores"].push(score);
   },
+
+  
   getAverage: function(name) {
     return average(gradebook[name]["testScores"]);
   }
 }
 
-console.log(gradebook.getAverage("Joseph"))
 
 
 
@@ -91,7 +94,16 @@ console.log(gradebook.getAverage("Joseph"))
 // __________________________________________
 // Reflect
 
+/*
 
+This was a fantastic challenge for me, because my JS was super weak beforehand. I found a lot of awesome tutorials like how to 
+create a "class" in javascript even though it is classless, etc. I also learned some more about testing. For the sake of time I gave up
+on trying to dynamically add the names and grades via a Gradebook "not-class" and just did it statically. However, I noticed several errors
+that without the tests would have taken me far longer to complete. In the averaging, I wasn't iterating with the length of the array. I wasn't 
+calling strings for the names and testScores, but quickly found out that left them as undefinted variables. I have copied and pasted the scores
+from the scores array, but the type checking in the tests wouldn't accept that, etc.
+
+*/
 
 
 
