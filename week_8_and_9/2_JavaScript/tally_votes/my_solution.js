@@ -40,6 +40,23 @@ var voteCount = {
   treasurer: {}
 }
 
+function countVotes(votes) {
+  for (var name in votes) {
+    var voters = votes[name];
+    for (var office in voters) {
+      var voteTally = voters[office]; 
+      if (voteCount[office].hasOwnProperty(voteTally)) {
+        voteCount[office][voteTally] += 1;
+      } else {
+        voteCount[office][voteTally] = 1;
+      }
+    }
+  }
+};
+
+
+countVotes(votes);
+console.log(voteCount);
 /* The name of each student receiving a vote for an office should become a property 
 of the respective office in voteCount.  After Alex's votes have been tallied, 
 voteCount would be ...
@@ -63,7 +80,28 @@ var officers = {
   treasurer: undefined
 }
 
+// function chooseTheWinners(officers, voteCount) {
+//   for ( offices in voteCount ) {
+//     for ( names in offices ) {
+//       var currentWinner = names[property];
+//       if names[]
+//     }
+//   }
+// }
+
 // Pseudocode
+
+/*
+
+Test 1: The tally for Bob for president needs to be 3. Make sure we are tallying the presidential votes correctly.
+Test 2: Bob's vice presidential votes should be 2, tally vp votes accurately.
+Test 3: Bob's secretary votes should be 2. Tally secretary accurately.
+Test 4: Bob's treasurer should be 4. 
+Test 5: Correctly pick louis as the president
+Test 6: Herman should be voted in as vice president
+Test 7: Fred should be elected as the secretary
+Test 8: Ivy should be elected as the treasurer
+*/
 
 
 // __________________________________________
